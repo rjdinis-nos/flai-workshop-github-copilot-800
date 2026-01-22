@@ -3,6 +3,7 @@
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 """
+import os
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
@@ -16,14 +17,23 @@ from .views import UserViewSet, TeamViewSet, ActivityViewSet, LeaderboardViewSet
 def api_root(request, format=None):
     """
     API root endpoint showing all available API endpoints
+    Uses Codespace URL when running in GitHub Codespaces
     """
+    # Build base URL for Codespace environment
+    codespace_name = os.getenv('CODESPACE_NAME')
+    if codespace_name:
+        base_url = f'https://{codespace_name}-8000.app.github.dev'
+    else:
+        # Use request to build URL for localhost
+        base_url = request.build_absolute_uri('/').rstrip('/')
+    
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'teams': reverse('team-list', request=request, format=format),
-        'activities': reverse('activity-list', request=request, format=format),
-        'leaderboard': reverse('leaderboard-list', request=request, format=format),
-        'workouts': reverse('workout-list', request=request, format=format),
-        'admin': reverse('admin:index', request=request, format=format),
+        'users': f'{base_url}/api/users/',
+        'teams': f'{base_url}/api/teams/',
+        'activities': f'{base_url}/api/activities/',
+        'leaderboard': f'{base_url}/api/leaderboard/',
+        'workouts': f'{base_url}/api/workouts/',
+        'admin': f'{base_url}/admin/',
     })
 
 
