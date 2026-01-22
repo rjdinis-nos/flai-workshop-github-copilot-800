@@ -32,6 +32,13 @@ const Teams = () => {
       });
   }, [API_URL]);
 
+  const getTeamEmoji = (name) => {
+    const teamEmojis = ['🦸‍♂️', '🦸‍♀️', '🦹‍♂️', '🦹‍♀️', '⚡', '🔥', '💥', '🌟', '🚀', '🏅', '⭐', '💫'];
+    if (!name) return '🦸‍♂️';
+    const index = name.length % teamEmojis.length;
+    return teamEmojis[index];
+  };
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -89,7 +96,7 @@ const Teams = () => {
                       teams.map((team) => (
                         <tr key={team.id}>
                           <td><span className="badge bg-secondary">{team.id}</span></td>
-                          <td><strong>{team.name}</strong></td>
+                          <td><span style={{fontSize: '1.5rem', marginRight: '0.5rem'}}>{getTeamEmoji(team.name)}</span><strong>{team.name}</strong></td>
                           <td>{team.description || <span className="text-muted">No description</span>}</td>
                           <td><span className="badge bg-success">{team.members ? team.members.length : 0} members</span></td>
                           <td>{team.created_at ? new Date(team.created_at).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>

@@ -43,20 +43,35 @@ function App() {
           <Route path="/" element={
             <div className="container component-container">
               <div className="home-hero">
-                <h1 className="display-4">🏃 Welcome to OctoFit Tracker!</h1>
-                <p className="lead">Track your fitness activities, compete with teams, and reach your goals.</p>
-                <hr className="my-4" style={{borderColor: 'rgba(255,255,255,0.3)'}} />
-                <p className="mb-0">Use the navigation menu above or the cards below to explore different sections of the app.</p>
+                <div style={{fontSize: '4rem', marginBottom: '1rem'}}>🦸‍♂️ 💪 🦸‍♀️</div>
+                <h1 className="display-3 fw-bold">Unleash Your Inner Hero!</h1>
+                <p className="lead fs-4 mt-3">Join the OctoFit Tracker and transform your fitness journey into an epic adventure.</p>
+                <hr className="my-4" style={{borderColor: 'rgba(255,255,255,0.5)', borderWidth: '2px'}} />
+                <p className="fs-5 mb-4">⚡ Track activities • 🏆 Compete with heroes • 🚀 Reach legendary status</p>
+                <div className="mt-4">
+                  <Link to="/users" className="btn btn-light btn-lg btn-custom me-3 mb-2">
+                    🦸 Join Heroes
+                  </Link>
+                  <Link to="/leaderboard" className="btn btn-outline-light btn-lg btn-custom mb-2">
+                    🏆 View Leaderboard
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="text-center mt-5 mb-4">
+                <h2 className="fw-bold" style={{color: '#667eea'}}>Choose Your Mission</h2>
+                <p className="text-muted">Select a category to begin your heroic journey</p>
               </div>
               
               <div className="row mt-4">
                 <div className="col-md-4 mb-4">
                   <Link to="/users" className="text-decoration-none">
                     <div className="card data-card h-100 text-center">
-                      <div className="card-body d-flex flex-column justify-content-center">
-                        <i className="bi bi-person-circle" style={{fontSize: '3rem', color: '#667eea'}}></i>
-                        <h3 className="card-title mt-3">Users</h3>
-                        <p className="card-text text-muted">View all registered users and their profiles</p>
+                      <div className="card-body d-flex flex-column justify-content-center py-4">
+                        <div style={{fontSize: '4rem'}}>🦸</div>
+                        <h3 className="card-title mt-3 fw-bold">Heroes</h3>
+                        <p className="card-text text-muted">Meet our legendary fitness warriors and their incredible stats</p>
+                        <span className="badge bg-primary mt-2">View Profiles</span>
                       </div>
                     </div>
                   </Link>
@@ -65,10 +80,11 @@ function App() {
                 <div className="col-md-4 mb-4">
                   <Link to="/activities" className="text-decoration-none">
                     <div className="card data-card h-100 text-center">
-                      <div className="card-body d-flex flex-column justify-content-center">
-                        <i className="bi bi-activity" style={{fontSize: '3rem', color: '#667eea'}}></i>
-                        <h3 className="card-title mt-3">Activities</h3>
-                        <p className="card-text text-muted">Track and view all fitness activities</p>
+                      <div className="card-body d-flex flex-column justify-content-center py-4">
+                        <div style={{fontSize: '4rem'}}>⚡</div>
+                        <h3 className="card-title mt-3 fw-bold">Activities</h3>
+                        <p className="card-text text-muted">Chronicle every heroic feat and training session</p>
+                        <span className="badge bg-warning text-dark mt-2">Track Now</span>
                       </div>
                     </div>
                   </Link>
@@ -77,10 +93,11 @@ function App() {
                 <div className="col-md-4 mb-4">
                   <Link to="/leaderboard" className="text-decoration-none">
                     <div className="card data-card h-100 text-center">
-                      <div className="card-body d-flex flex-column justify-content-center">
-                        <i className="bi bi-trophy" style={{fontSize: '3rem', color: '#667eea'}}></i>
-                        <h3 className="card-title mt-3">Leaderboard</h3>
-                        <p className="card-text text-muted">See top performers and rankings</p>
+                      <div className="card-body d-flex flex-column justify-content-center py-4">
+                        <div style={{fontSize: '4rem'}}>🏆</div>
+                        <h3 className="card-title mt-3 fw-bold">Leaderboard</h3>
+                        <p className="card-text text-muted">Rise through the ranks and claim your glory</p>
+                        <span className="badge bg-success mt-2">See Rankings</span>
                       </div>
                     </div>
                   </Link>
@@ -91,10 +108,11 @@ function App() {
                 <div className="col-md-6 mb-4">
                   <Link to="/teams" className="text-decoration-none">
                     <div className="card data-card h-100 text-center">
-                      <div className="card-body d-flex flex-column justify-content-center">
-                        <i className="bi bi-people" style={{fontSize: '3rem', color: '#667eea'}}></i>
-                        <h3 className="card-title mt-3">Teams</h3>
-                        <p className="card-text text-muted">Manage and view team competitions</p>
+                      <div className="card-body d-flex flex-column justify-content-center py-4">
+                        <div style={{fontSize: '4rem'}}>🦸‍♂️🦸‍♀️</div>
+                        <h3 className="card-title mt-3 fw-bold">Super Teams</h3>
+                        <p className="card-text text-muted">Form alliances and conquer challenges together</p>
+                        <span className="badge bg-info mt-2">Join Squad</span>
                       </div>
                     </div>
                   </Link>
@@ -103,10 +121,11 @@ function App() {
                 <div className="col-md-6 mb-4">
                   <Link to="/workouts" className="text-decoration-none">
                     <div className="card data-card h-100 text-center">
-                      <div className="card-body d-flex flex-column justify-content-center">
-                        <i className="bi bi-lightning" style={{fontSize: '3rem', color: '#667eea'}}></i>
-                        <h3 className="card-title mt-3">Workouts</h3>
-                        <p className="card-text text-muted">Browse personalized workout suggestions</p>
+                      <div className="card-body d-flex flex-column justify-content-center py-4">
+                        <div style={{fontSize: '4rem'}}>🔥</div>
+                        <h3 className="card-title mt-3 fw-bold">Power Workouts</h3>
+                        <p className="card-text text-muted">Unlock legendary training programs and level up</p>
+                        <span className="badge bg-danger mt-2">Start Training</span>
                       </div>
                     </div>
                   </Link>

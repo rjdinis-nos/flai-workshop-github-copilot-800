@@ -32,6 +32,13 @@ const Users = () => {
       });
   }, [API_URL]);
 
+  const getEmojiAvatar = (name) => {
+    const emojis = ['🦸', '🦹', '⚡', '🔥', '💪', '🌟', '🚀', '⭐', '💫', '🏆'];
+    if (!name) return '🦸';
+    const index = name.length % emojis.length;
+    return emojis[index];
+  };
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -90,11 +97,11 @@ const Users = () => {
                       users.map((user) => (
                         <tr key={user.id}>
                           <td><span className="badge bg-secondary">{user.id}</span></td>
-                          <td><strong>{user.name}</strong></td>
+                          <td><span style={{fontSize: '1.5rem', marginRight: '0.5rem'}}>{getEmojiAvatar(user.name)}</span><strong>{user.name}</strong></td>
                           <td>{user.alias || <span className="text-muted">No alias</span>}</td>
                           <td>{user.email || <span className="text-muted">No email</span>}</td>
                           <td><span className="badge bg-info">{user.team || 'No team'}</span></td>
-                          <td>{user.date_joined ? new Date(user.date_joined).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
+                          <td>{user.created_at ? new Date(user.created_at).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
                         </tr>
                       ))
                     )}
