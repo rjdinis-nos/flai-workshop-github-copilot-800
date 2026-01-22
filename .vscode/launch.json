@@ -3,15 +3,16 @@
   "configurations": [
     {
       "name": "Launch Django Backend",
-      "type": "python",
+      "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/octofit-tracker/backend/manage.py",
-      "args": ["runserver", "0.0.0.0:8000"],
+      "args": ["runserver", "0.0.0.0:8000", "--noreload"],
       "django": true,
-      "justMyCode": true,
+      "justMyCode": false,
       "python": "${workspaceFolder}/octofit-tracker/backend/venv/bin/python",
+      "cwd": "${workspaceFolder}/octofit-tracker/backend",
+      "console": "integratedTerminal",
       "env": {
-        "PYTHONPATH": "${workspaceFolder}/octofit-tracker/backend/venv/bin/python",
         "VIRTUAL_ENV": "${workspaceFolder}/octofit-tracker/backend/venv",
         "PATH": "${workspaceFolder}/octofit-tracker/backend/venv/bin:${env:PATH}"
       }
