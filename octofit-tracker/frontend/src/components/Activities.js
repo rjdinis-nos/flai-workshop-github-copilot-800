@@ -32,14 +32,42 @@ const Activities = () => {
       });
   }, [API_URL]);
 
-  if (loading) return <div className="container mt-4"><p>Loading activities...</p></div>;
-  if (error) return <div className="container mt-4"><p className="text-danger">Error: {error}</p></div>;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner-border text-primary spinner-border-custom" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-3 text-muted">Loading activities...</p>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="error-container">
+        <div className="alert alert-danger" role="alert">
+          <h4 className="alert-heading">Error!</h4>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mt-4">
-      <h2>Activities</h2>
-      <div className="table-responsive">
-        <table className="table table-striped table-hover">
+    <div className="container component-container">
+      <div className="row">
+        <div className="col-12">
+          <div className="card data-card">
+            <div className="card-header">
+              <h2 className="mb-0"><i className="bi bi-activity"></i> Activities Log</h2>
+            </div>
+            <div className="card-body">
+              <div className="mb-3 d-flex justify-content-between align-items-center">
+                <span className="badge bg-primary badge-custom">Total Activities: {activities.length}</span>
+              </div>
+              <div className="table-responsive">
+                <table className="table table-hover">
           <thead>
             <tr>
               <th>ID</th>
@@ -52,23 +80,30 @@ const Activities = () => {
           </thead>
           <tbody>
             {activities.length === 0 ? (
-              <tr>
-                <td colSpan="6" className="text-center">No activities found</td>
-              </tr>
-            ) : (
-              activities.map((activity) => (
-                <tr key={activity.id}>
-                  <td>{activity.id}</td>
-                  <td>{activity.user}</td>
-                  <td>{activity.activity_type}</td>
-                  <td>{activity.duration}</td>
-                  <td>{activity.calories_burned}</td>
-                  <td>{new Date(activity.date).toLocaleDateString()}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                      <tr>
+                        <td colSpan="6" className="text-center text-muted py-4">
+                          <i className="bi bi-inbox" style={{fontSize: '2rem'}}></i>
+                          <p className="mb-0 mt-2">No activities found</p>
+                        </td>
+                      </tr>
+                    ) : (
+                      activities.map((activity) => (
+                        <tr key={activity.id}>
+                          <td><span className="badge bg-secondary">{activity.id}</span></td>
+                          <td><strong>{activity.user_name || activity.user_alias || 'N/A'}</strong></td>
+                          <td><span className="badge bg-info">{activity.activity_type}</span></td>
+                          <td>{activity.duration_minutes} min</td>
+                          <td><span className="badge bg-warning text-dark">{activity.calories_burned} cal</span></td>
+                          <td>{activity.date ? new Date(activity.date).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

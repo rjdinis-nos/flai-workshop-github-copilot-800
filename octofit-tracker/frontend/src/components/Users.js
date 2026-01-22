@@ -32,18 +32,47 @@ const Users = () => {
       });
   }, [API_URL]);
 
-  if (loading) return <div className="container mt-4"><p>Loading users...</p></div>;
-  if (error) return <div className="container mt-4"><p className="text-danger">Error: {error}</p></div>;
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner-border text-primary spinner-border-custom" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-3 text-muted">Loading users...</p>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="error-container">
+        <div className="alert alert-danger" role="alert">
+          <h4 className="alert-heading">Error!</h4>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="container mt-4">
-      <h2>Users</h2>
-      <div className="table-responsive">
-        <table className="table table-striped table-hover">
+    <div className="container component-container">
+      <div className="row">
+        <div className="col-12">
+          <div className="card data-card">
+            <div className="card-header">
+              <h2 className="mb-0"><i className="bi bi-person-circle"></i> Users</h2>
+            </div>
+            <div className="card-body">
+              <div className="mb-3">
+                <span className="badge bg-primary badge-custom">Total Users: {users.length}</span>
+              </div>
+              <div className="table-responsive">
+                <table className="table table-hover">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Username</th>
+              <th>Name</th>
+              <th>Alias</th>
               <th>Email</th>
               <th>Team</th>
               <th>Date Joined</th>
@@ -51,22 +80,30 @@ const Users = () => {
           </thead>
           <tbody>
             {users.length === 0 ? (
-              <tr>
-                <td colSpan="5" className="text-center">No users found</td>
-              </tr>
-            ) : (
-              users.map((user) => (
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.username}</td>
-                  <td>{user.email || 'N/A'}</td>
-                  <td>{user.team || 'N/A'}</td>
-                  <td>{user.date_joined ? new Date(user.date_joined).toLocaleDateString() : 'N/A'}</td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+                      <tr>
+                        <td colSpan="6" className="text-center text-muted py-4">
+                          <i className="bi bi-person" style={{fontSize: '2rem'}}></i>
+                          <p className="mb-0 mt-2">No users found</p>
+                        </td>
+                      </tr>
+                    ) : (
+                      users.map((user) => (
+                        <tr key={user.id}>
+                          <td><span className="badge bg-secondary">{user.id}</span></td>
+                          <td><strong>{user.name}</strong></td>
+                          <td>{user.alias || <span className="text-muted">No alias</span>}</td>
+                          <td>{user.email || <span className="text-muted">No email</span>}</td>
+                          <td><span className="badge bg-info">{user.team || 'No team'}</span></td>
+                          <td>{user.date_joined ? new Date(user.date_joined).toLocaleDateString() : <span className="text-muted">N/A</span>}</td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,38 +1,158 @@
+/* Main App Styles */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #f8f9fa;
+}
+
+/* Navigation Styles */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  margin-bottom: 0;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+}
+
+/* Home Page Styles */
+.home-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 4rem 2rem;
+  border-radius: 10px;
+  margin: 2rem auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
 }
 
-.App-link {
-  color: #61dafb;
+.home-hero h1 {
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.home-hero p.lead {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Component Container Styles */
+.component-container {
+  padding: 2rem 0;
+  min-height: calc(100vh - 56px);
+}
+
+/* Card Styles */
+.data-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,.2);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1rem 1.5rem;
+}
+
+/* Table Styles */
+.table-container {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table thead th {
+  border-bottom: 2px solid #667eea;
+  color: #667eea;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+}
+
+/* Badge Styles */
+.badge-custom {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  flex-direction: column;
+}
+
+.spinner-border-custom {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+}
+
+/* Button Styles */
+.btn-custom {
+  border-radius: 25px;
+  padding: 0.5rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 2rem 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .table-container {
+    padding: 1rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.25rem;
   }
 }
